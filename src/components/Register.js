@@ -28,13 +28,12 @@ export default function Register() {
         PASSWORD_REQUIRE : password.length === 0 ? 
         PASSWORD_REQUIRE : !regPass.test(password) ? 
         PASSWORD_WRONG : ""
-      
-      if(newEmailErr === "" && newPassErr === "")
-      {
-        alert(SUCCESS);
-      }else{
         setEmailErr(newEmailErr);
         setPasswordErr(newPassErr);
+      if(newEmailErr === "" && newPassErr === "")
+      {
+        console.log("email", email);
+        console.log("password", password);
       }
 
       
