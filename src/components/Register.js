@@ -17,6 +17,9 @@ export default function Register() {
     const [password, setPassword] = useState();
     const [emailErr, setEmailErr] = useState();
     const [passwordErr, setPasswordErr] = useState();
+    const [confirmPassword, setConfirmpassword] = useState();
+    const [confirmPasswordErr, setconfirmPasswordErr] = useState();
+    
     
      
     const handleSubmit = (event) => {
@@ -30,10 +33,14 @@ export default function Register() {
         PASSWORD_WRONG : ""
         setEmailErr(newEmailErr);
         setPasswordErr(newPassErr);
+
+      const newConfirmPasswordErr = !confirmPassword? "Please enter your Confirm password!" :confirmPassword !== password ?"Invalid Confirm password!" : ""
+        setconfirmPasswordErr(newConfirmPasswordErr);
       if(newEmailErr === "" && newPassErr === "")
       {
         console.log("email", email);
         console.log("password", password);
+        console.log("confirmPass", confirmPassword);
       }
 
       
@@ -44,18 +51,21 @@ export default function Register() {
 
       const newEmail = event.target.value;
       setEmail(newEmail)
-      // console.log(newEmail);
+      
     }
   
     const handleChangePass = (event) =>{
       const newPassword = event.target.value;
       setPassword(newPassword);
-      // console.log(newPassword);
+      
     }
 
+    const handleChangeConfirmPass = (event) => {
+      const newConfirmPassword = event.target.value;
+      setConfirmpassword(newConfirmPassword);
+    }
 
-
-    
+      
 
   return (
     <div>
@@ -71,6 +81,11 @@ export default function Register() {
           <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
           <input type="password" className="form-control" id="exampleInputPasswordl1"  onChange={handleChangePass} />
           <div className="error_password" style={{color: "red" , display: passwordErr ? "block" : "none"}}>{passwordErr}</div>
+        </div>
+        <div className="mb-3">
+            <label className="form-label" for="confirmPassword">Confirm Password </label>
+            <input className="form-control" type="password" id="confirmPassword" onChange={handleChangeConfirmPass} />
+            <div className="error__confirmPassword" style={{color: 'red' , display: confirmPasswordErr ? "block" : "none"}}>{confirmPasswordErr}</div>
         </div>
 
         <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Register</button>
